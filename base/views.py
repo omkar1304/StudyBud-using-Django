@@ -67,7 +67,7 @@ def logoutPage(request):
 
 def userProfile(request, pk):
     user = User.objects.get(id=pk)
-    topics = Topic.objects.all()
+    topics = Topic.objects.all()[0:5]
     rooms = user.room_set.all()
     room_messages = user.message_set.all()
     context = {'rooms' : rooms, 'topics' : topics,'room_messages' : room_messages, 'user' : user}
