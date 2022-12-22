@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Room, Topic, Message
 from .forms import RoomForm, UserForm
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 # rooms = [
@@ -14,6 +15,8 @@ from .forms import RoomForm, UserForm
 #     {'id' : 2, 'name' : 'FrontEnd Developer'},
 #     {'id' : 3, 'name' : 'BackEnd Developer'}
 # ]
+
+@csrf_exempt
 def loginPage(request):
     page = 'login'
     context = {'page' : page}
@@ -40,6 +43,7 @@ def loginPage(request):
 
     return render(request, 'base/login_register.html', context)
 
+@csrf_exempt
 def registerPage(request):
     form = UserCreationForm
 
@@ -56,6 +60,7 @@ def registerPage(request):
 
     return render(request, 'base/login_register.html', {'form' : form})
 
+@csrf_exempt
 def logoutPage(request):
     logout(request)
     return redirect('home')
@@ -80,6 +85,7 @@ def home(request):
     context = {'rooms' : rooms, 'topics' : topics, 'room_count' : room_count, 'room_messages' : room_messages}
     return render(request, 'base/home.html', context)
 
+@csrf_exempt
 def room(request, pk):
     room = Room.objects.get(id=pk)
     room_mesaages = room.message_set.all()
@@ -113,6 +119,7 @@ def room(request, pk):
 #     context = {'form' : form, 'topics' : topics}
 #     return render(request, 'base/room_form.html', context)
 
+@csrf_exempt
 @login_required(login_url='login')
 def createRoom(request):
     form = RoomForm
@@ -147,6 +154,7 @@ def createRoom(request):
 #     context = {'form' : form}
 #     return render(request, 'base/room_form.html', context)
 
+@csrf_exempt
 @login_required(login_url='login')
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
@@ -166,6 +174,7 @@ def updateRoom(request, pk):
     context = {'form' : form, 'room' : room, 'topics' :topics}
     return render(request, 'base/room_form.html', context)
 
+@csrf_exempt
 @login_required(login_url='login')
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
@@ -174,6 +183,7 @@ def deleteRoom(request, pk):
         return redirect('home')
     return render(request, 'base/delete.html', {'obj': room})
 
+@csrf_exempt
 @login_required(login_url='login')
 def deleteMessage(request, pk):
     message = Message.objects.get(id=pk)
@@ -183,7 +193,7 @@ def deleteMessage(request, pk):
 
     return render(request, 'base/delete.html', {'obj' : message})
 
-
+@csrf_exempt
 @login_required(login_url='login')
 def updateUser(request):
     user = request.user
