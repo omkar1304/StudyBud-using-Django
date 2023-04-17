@@ -1,3 +1,5 @@
+![StudyBud-using-Django](./banner.png)
+
 # StudyBud-using-Django
 
 A platform for developers to connect, collaborate, and learn new technologies together.
@@ -5,6 +7,10 @@ A platform for developers to connect, collaborate, and learn new technologies to
 ## Description
 
 This platform was created as a clone of the popular communication app, Discord, with a focus on providing a space for developers to share their knowledge and expertise. The frontend was developed using HTML/CSS and JavaScript, while the backend was implemented with the Django Framework and a SQLite database. The platform is deployed on the pythonanywhere hosting service, offering users a reliable and secure environment for communication and learning. The end result is a user-friendly and functional platform for developers to connect, share their knowledge, and stay up-to-date with the latest advancements in technology.
+
+## Live Project Link
+
+The project is hosted on pythonanywhere and can be accessed using the following link - https://studybudweb.pythonanywhere.com/
 
 ## Features
 
